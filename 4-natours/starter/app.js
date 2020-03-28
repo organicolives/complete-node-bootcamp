@@ -2,6 +2,7 @@ const fs = require('fs')
 const express = require('express')
 const app = express()
 
+
 app.use(express.json())
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`))
@@ -58,5 +59,3 @@ const deleteTour = (req, res) => {
 
 app.route('/api/v1/tours').get(getAllTours).post(createTour)
 app.route('/api/v1/tours/:id').get(getTour).delete(deleteTour)
-
-app.listen(5000, console.log('server is running'))
