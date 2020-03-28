@@ -7,4 +7,13 @@ dotenv.config({
     path: './config.env'
 })
 
-app.listen(5000, console.log('server is running'))
+const DB = process.env.DATABASE_URL.replace('<PASSWORD>', process.env.DATABASE_PASSWORD)
+
+mongoose.connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+}).then(con => {
+    console.log(con.connections)
+    console.log('DB Connection Successful')
+})
